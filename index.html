@@ -6,13 +6,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .red-5 {
+            background: lightcoral;
+        }
+
+        .red-6 {
+            background: lightgreen;
+        }
+    </style>
 </head>
 
 <body>
     <div id="myApp">
-        {{ output }}
-        <div>{{err}}</div>
-        <div>{{$data|json}}</div>
+        <h3>{{{ output | uppercase }}}</h3>
+        <!-- 加三個等號 裡面可以包含html標籤 不會被過濾掉 -->
+        <!-- 兩個等號是 For JS 跳脫 裡面塞JS變數-->
+        <div class="red-{{count}}">{{ 10+1 }}</div>
+        <div>{{$data|json|uppercase}}</div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
@@ -22,11 +33,20 @@
             el: '#myApp',
             data: {
                 output: 'hello world',
-                err: 'wrong answer'
+                err: 'wrong answer',
+                count: 5,
+                items: [{todo:"write code"}, {todo:}]
+            },
+            created: function () {
+                this.count++;
+                console.log('instance created' + this.output);
+            },
+            ready: function () {
+                console.log('on ready');
             }
         })
 
-        vm.output = "new content"
+        vm.output = "new <br> content"
     </script>
 
 </body>
