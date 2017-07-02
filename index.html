@@ -5,50 +5,42 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/style.css" rel="stylesheet">
     <style>
-        .red-5 {
-            background: lightcoral;
-        }
-
-        .red-6 {
-            background: lightgreen;
+        div {
+            padding: 10px;
+            border: 1px solid black;
         }
     </style>
 </head>
 
 <body>
     <div id="myApp">
-        <h3>{{{ output | uppercase }}}</h3>
-        <!-- 加三個等號 裡面可以包含html標籤 不會被過濾掉 -->
-        <!-- 兩個等號是 For JS 跳脫 裡面塞JS變數-->
-        <div class="red-{{count}}">{{ 10+1 }}</div>
-        <div>{{$data|json|uppercase}}</div>
+        <h1>Searching for {{searchme}}</h1>
+        <input type="" name="" v-model="searchme">
+        <div v-for="index in items | filterBy searchme">{‌{index.todo}}</div>
+        <ul>
+            <li v-for="index in items | filterBy searchme">{{ index.todo }}</li>
+        </ul>
+
+        <div>{{$data | json}}</div>
+        <pre>{{$data|json}}</pre>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
     <script>
         var vm = new Vue({
             el: '#myApp',
             data: {
-                output: 'hello world',
-                err: 'wrong answer',
-                count: 5,
-                items: [{todo:"write code"}, {todo:}]
-            },
-            created: function () {
-                this.count++;
-                console.log('instance created' + this.output);
-            },
-            ready: function () {
-                console.log('on ready');
+                searchme: '',
+                items: [
+                    { todo: "creatd website" },
+                    { todo: "go sleep" },
+                    { todo: "eat breakfast" }
+                ]
             }
         })
-
-        vm.output = "new <br> content"
     </script>
-
 </body>
 
 </html>
