@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
+    <style>
+        #newdiv {
+            height: 200px;
+            width: 200px;
+            background: lightcoral;
+        }
+
+        .transition-transition {
+            transition: all .30s ease;
+            height: 20px;
+            background-color: lightgreen;
+        }
+
+        .transition-enter,
+        .transition-leave {
+            height: 0px;
+            opacity: 0;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myApp">
+
+        <a v-on:click="toggleData" class="btn btn-info">click me</a>
+
+        <!--<div>{{$data | json}}</div>-->
+        <!--<pre v-show="preview">
+        {{ $data |json }}
+        </pre>-->
+
+        <!-- HERE -->
+        <div v-if="preview" id="newdiv" transition="transition">some content</div>
+        <div v-else="">dddddnddddnddddnddddnd</div>
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                preview: false,
+            },
+            methods: {
+                toggleData: function () {
+                    this.preview ^= true;
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
