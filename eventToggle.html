@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
+</head>
+
+<body>
+    <div id="myApp">
+        <h1>Searching for {{searchme}}</h1>
+        <input type="" name="" v-model="searchme">
+        <div v-for="index in items | filterBy searchme">{‌{index.todo}}</div>
+        <div v-for="index in items | filterBy searchme">{‌{ index.todo }}</div>
+        <a v-on:click="toggleData" class="btn btn-info">click me</a>
+
+        <!--<ul>
+            <li v-for="index in items | filterBy searchme">{{ index.todo }}</li>
+        </ul>-->
+
+        <!--<div>{{$data | json}}</div>-->
+        <pre v-show="preview">
+        {{ $data |json }}
+        </pre>
+    </div>
+
+
+
+    <script>
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                searchme: '',
+                preview: false,
+                items: [
+                    { todo: "creatd website" },
+                    { todo: "go sleep" },
+                    { todo: "eat breakfast" }
+                ]
+            },
+            methods: {
+                toggleData: function () {
+                    this.preview ^= true;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
