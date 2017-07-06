@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Learning Vue JS</title>
+    <style>
+        .btn {
+            display: block;
+            margin-top: 35px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myApp">
+        <!-- 將component裡面的 make參數 帶入myApp的變數 -->
+        <mycar :make="make2" :model="model2" :message="message2" :count="count2"></mycar>
+        <mycar :make="make2" :model="model2" :message="message2" :count="count2"></mycar>
+        <mycar :make="make2" :model="model2" :message="message2" :count="count2"></mycar>
+        <pre>{{ $data | json }}</pre>
+    </div>
+
+    <template id="car-template">
+        <h1>{{make}}</h1>
+        <h4>{{model}}</h4>
+        <div> Hello World {{{ message }}</div>
+        <div>Count : {{ count }}</div>
+        <button type="button" @click="addValue" class="btn">Vote for me</button>
+    </template>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.js"></script>
+    <script>
+        // 創建一個coomponent
+        Vue.component('mycar', {
+            // 然後她的樣板 找id是car-template的(類似jquery應該不陌生吧)
+            template: '#car-template',
+            // 在樣板呈現的數據
+            props: ['make', 'model', 'message', 'count'],
+            // component裡面的方法
+            methods: {
+                addValue: function (event) {
+                    this.count++;
+                    // 因為是this.count++
+                    // 所以實際上會是每個coomponent裡面的count 值都不一樣
+                    // 只會改變自己這個component裡面的值
+                    // 對於外面myApp的count2完全不影響
+                }
+            }
+        });
+
+        var vm = new Vue({
+            el: '#myApp',
+            data: {
+                make2: 'Ford',
+                model2: 'Mustang',
+                message2: 'Buy this car',
+                count2: 0
+            }
+
+        })
+    </script>
+</body>
+
+</html>
